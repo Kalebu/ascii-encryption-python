@@ -60,7 +60,7 @@ Demo
 
 Explore it 
 -----------
-Now keep explore it by testing it with various input links to see what links it will scrap 
+Now keep explore it by testing it with various input text to see how you can twist it to your own use
 
 Give it a star 
 --------------
