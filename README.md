@@ -45,6 +45,46 @@ In this repository I have implemented two simple function just do that, which ta
 
 Samewise to decryption, you are going to specify the secret number and then it will recieve your encrypted text input and then render to you decrypted text output 
 
+# ASCII-based Encryption/Decryption
+
+This Python script provides simple ASCII-based encryption and decryption functionalities. The code has been improved to enhance key handling, error checking, and overall robustness.
+
+## Improvements
+
+### Key Handling
+- The `key` parameter now accepts both strings and bytes, providing more flexibility for different types of keys.
+- The key is automatically encoded if it is provided as a string.
+
+### Non-ASCII Characters
+- The script now handles non-ASCII characters more gracefully.
+
+### Error Handling
+- Error checks have been added to ensure that both the text and the key are not empty.
+
+### Modulo Operation
+- A modulo operation has been introduced to prevent overflow issues during character shifting. This ensures that the character values stay within the valid ASCII range.
+
+## Usage
+
+```python
+from itertools import cycle
+
+def encrypt(text, key='0'):
+    # ... (implementation details)
+
+def decrypt(text, key='0'):
+    # ... (implementation details)
+
+# Example Usage:
+original_message = "Hello, World!"
+encryption_key = "secretkey"
+
+encrypted_message = encrypt(original_message, encryption_key)
+print(f"Encrypted: {encrypted_message}")
+
+decrypted_message = decrypt(encrypted_message, encryption_key)
+print(f"Decrypted: {decrypted_message}")
+
 
 Demo 
 ------------
