@@ -1,26 +1,39 @@
-# ===============================================================
-# ============ FUNCTION TO DO ASCII BASED ENCRYPTION  ===========
-# ============         BASED ON A CERTAIN KEY         ===========
-# ================================================================
+from itertools import cycle
 
+def encrypt(text, key='0'):
+    if not text:
+        raise ValueError("Text should not be empty")
+    if not key:
+        raise ValueError("Key should not be empty")
+    
+    key = key.encode() if isinstance(key, str) else key
+    encrypted_text = ""
+    
+    for char, key_char in zip(text, cycle(key)):
+        encrypted_text += chr((ord(char) + ord(key_char)) % 128)
+    
+    return encrypted_text
 
-def encrypt(text, key=0):
-    if not isinstance(text, str):
-        raise TypeError("{} should be a type string".format(text))
-    if not isinstance(key, int):
-        raise TypeError("{} should be of type int".format(key))
-    return "".join([chr(ord(something) + key) for something in text])
+def decrypt(text, key='0'):
+    if not text:
+        raise ValueError("Text should not be empty")
+    if not key:
+        raise ValueError("Key should not be empty")
+    
+    key = key.encode() if isinstance(key, str) else key
+    decrypted_text = ""
+    
+    for char, key_char in zip(text, cycle(key)):
+        decrypted_text += chr((ord(char) - ord(key_char)) % 128)
+    
+    return decrypted_text
 
+# Example Usage:
+original_message = "Hello, World!"
+encryption_key = "secretkey"
 
-# ===================================================================
-# ============= FUNCTION TO DO ASCII BASED DECRYPTION ===============
-# =============       BASED ON A CERTAIN KEY          ===============
-# ===================================================================
+encrypted_message = encrypt(original_message, encryption_key)
+print(f"Encrypted: {encrypted_message}")
 
-
-def decrypt(text, key=0):
-    if not isinstance(text, str):
-        raise TypeError("{} should be a type string".format(text))
-    if not isinstance(key, int):
-        raise TypeError("{} should be of type int".format(key))
-    return "".join([chr(ord(something) - key) for something in text])
+decrypted_message = decrypt(encrypted_message, encryption_key)
+print(f"Decrypted: {decrypted_message}")
